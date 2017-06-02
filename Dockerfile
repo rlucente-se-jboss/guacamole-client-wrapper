@@ -11,13 +11,11 @@ COPY start.sh /opt/guacamole/bin/
 # Give the tomcat and guacamole directories to root group (not root user)
 # https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-origin-specific-guidelines
 RUN    chmod a+x /opt/guacamole/bin/start.sh \
-    && chgrp -R 0 /opt/guacamole \
-    && chmod -R g+rwX /opt/guacamole \
-    && chgrp -R 0 /usr/local/tomcat \
-    && chmod -R g+rwX /usr/local/tomcat \
     && mkdir -p /home/guacamole \
-    && chgrp -R 0 /home/guacamole \
-    && chmod -R g+rwX /home/guacamole 
+    && for d in /opt/guacamole /usr/local/tomcat /home/guacamole; do \
+           chgrp -R 0 $d; \
+           chmod -R g+rwX $d; \
+       done
 
 USER 1000
 
