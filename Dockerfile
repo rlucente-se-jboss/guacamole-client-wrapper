@@ -1,5 +1,5 @@
 FROM guacamole/guacamole:latest
-MAINTAINER  Rich Lucente "rich.lucente@gmail.com"
+MAINTAINER  Rich Lucente "rlucente@redhat.com"
 
 LABEL io.k8s.description="Run guacamole-client in OpenShift" \
       io.k8s.display-name="Guacamole" \
